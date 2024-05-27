@@ -30,4 +30,14 @@ const create = (req, res) => {
   });
 };
 
-module.exports = { index, show, create };
+const download = (req, res) => {
+  const post = posts.find((p) => p.slug === req.params.slug);
+  if (post) {
+    const filePath = path.join(__dirname, "..", "public", post.image);
+    res.download(filePath);
+  } else {
+    res.status(404).json({ error: "Post not found" });
+  }
+};
+
+module.exports = { index, show, create, download };
