@@ -13,7 +13,7 @@ const index = (req, res) => {
 const show = (req, res) => {
   const post = posts.find((p) => p.slug === req.params.slug);
   if (post) {
-    const imageUrl = `http://localhost:3000${post.image}`;
+    const imageUrl = `http://localhost:3000/${post.image}`;
     res.type("json").json({ ...post, image_url: imageUrl });
   } else {
     res.status(404).send({ error: "Post not found" });
